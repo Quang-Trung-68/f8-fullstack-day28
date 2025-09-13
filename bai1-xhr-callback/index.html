@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Bài 1: XHR với Callback Pattern</title>
+</head>
+<body>
+    <div>
+        <h2>Chức năng 1: User Profile Card</h2>
+        <form>
+            <input class="user-id-input" type="number" min="1" max="10" step="1">
+            <button type="button" class="find-user">Tìm User</button>
+        </form>
+        <div class="user-result">
+            <div class="user-name"></div>
+            <div class="user-email"></div>
+            <div class="user-phone"></div>
+            <div class="user-website"></div>
+            <div class="user-company"></div>
+            <div class="user-address"></div>
+        </div>
+        <div class="find-user-error"></div>
+    </div>
+    <div>
+        <h2>Chức năng 2: Posts với Comments</h2>
+        <div class="posts-list">
+            <div class="post-userid"></div>
+            <div class="post-id"></div>
+            <div class="post-title"></div>
+            <div class="post-body"></div>
+        </div>
+        <div class="post-error"></div>
+    </div>
+    <div>
+        <h2>Chức năng 3: Todo List với Filter</h2>
+        <div>
+            <input class="user-id-input-todo" type="number" min="1" max="10" step="1">
+            <button type="button" class="all-todo-btn">Tất cả</button>
+            <button type="button" class="complete-todo-btn">Đã hoàn thành</button>
+            <button type="button" class="incomplete-todo-btn">Chưa hoàn thành</button>
+        </div>
+        <div>
+            <div class="number-todo">0</div>
+            <div class="todo-list"></div>
+        </div>
+        <div class="post-error"></div>
+    </div>
+
+
+    <div class="loading-overlay" style="display:none;">
+        <div class="loading-text">Đang tải...</div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>

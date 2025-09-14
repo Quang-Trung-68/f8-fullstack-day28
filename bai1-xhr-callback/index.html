@@ -45,22 +45,27 @@
     <div class="section">
       <h2>Chức năng 3: Todo List với Filter</h2>
       <div>
-        <input
-          class="user-id-input-todo"
-          type="number"
-          min="1"
-          max="10"
-          step="1"
-          placeholder="Nhập User ID (1-10)"
-        />
-        <button type="button" class="all-todo-btn">Tất cả</button>
-        <button type="button" class="complete-todo-btn">Đã hoàn thành</button>
-        <button type="button" class="incomplete-todo-btn">
-          Chưa hoàn thành
-        </button>
+       <div>
+          <input
+            class="user-id-input-todo"
+            type="number"
+            min="1"
+            max="10"
+            step="1"
+            placeholder="Nhập User ID (1-10)"
+          />
+          <button type="button" class="load-todo-btn">Load todos</button>
+       </div>
+       <div>
+          <button type="button" class="all-todo-btn">Tất cả</button>
+          <button type="button" class="complete-todo-btn">Đã hoàn thành</button>
+          <button type="button" class="incomplete-todo-btn">
+            Chưa hoàn thành
+          </button>
+       </div>
       </div>
       <div>
-        <div class="number-todo">0</div>
+        <div class="number-todo">Số todos: 0</div>
         <div class="todo-list"></div>
       </div>
       <div class="todo-error error"></div>

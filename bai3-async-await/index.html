@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Bài 3: Refactor với Async/Await</title>
+    <title>Bài 3: Modern Approach với Async/Await</title>
   </head>
   <body>
-    <h1>Bài 3: XHR với Async/Await Pattern</h1>
+    <h1>Bài 3: Modern Approach với Async/Await</h1>
 
     <div class="section">
       <h2>Chức năng 1: User Profile Card</h2>
@@ -45,22 +45,27 @@
     <div class="section">
       <h2>Chức năng 3: Todo List với Filter</h2>
       <div>
-        <input
-          class="user-id-input-todo"
-          type="number"
-          min="1"
-          max="10"
-          step="1"
-          placeholder="Nhập User ID (1-10)"
-        />
-        <button type="button" class="all-todo-btn">Tất cả</button>
-        <button type="button" class="complete-todo-btn">Đã hoàn thành</button>
-        <button type="button" class="incomplete-todo-btn">
-          Chưa hoàn thành
-        </button>
+       <div>
+          <input
+            class="user-id-input-todo"
+            type="number"
+            min="1"
+            max="10"
+            step="1"
+            placeholder="Nhập User ID (1-10)"
+          />
+          <button type="button" class="load-todo-btn">Load todos</button>
+       </div>
+       <div>
+          <button type="button" class="all-todo-btn">Tất cả</button>
+          <button type="button" class="complete-todo-btn">Đã hoàn thành</button>
+          <button type="button" class="incomplete-todo-btn">
+            Chưa hoàn thành
+          </button>
+       </div>
       </div>
       <div>
-        <div class="number-todo">0</div>
+        <div class="number-todo">Số todos: 0</div>
         <div class="todo-list"></div>
       </div>
       <div class="todo-error error"></div>
@@ -70,6 +75,7 @@
     <div class="loading-overlay" style="display: none">
       <div class="loading-text">Đang tải...</div>
     </div>
+
     <script src="./app.js"></script>
   </body>
 </html>

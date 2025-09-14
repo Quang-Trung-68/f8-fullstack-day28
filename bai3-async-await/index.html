@@ -1,188 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Bài 3: Refactor với Async/Await</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background: #f5f5f5;
-        }
-        
-        .section {
-            background: white;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .user-result, .posts-list, .todo-list {
-            margin: 15px 0;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 4px;
-            min-height: 50px;
-        }
-        
-        .post-id-1, .post-id-2, .post-id-3, .post-id-4, .post-id-5,
-        .post-id-6, .post-id-7, .post-id-8, .post-id-9, .post-id-10,
-        .post-id-11, .post-id-12, .post-id-13, .post-id-14, .post-id-15 {
-            margin: 10px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background: white;
-        }
-        
-        .comments {
-            margin-top: 10px;
-            padding: 10px;
-            background: #e8f4f8;
-            border-radius: 4px;
-        }
-        
-        .comment {
-            margin: 5px 0;
-            padding: 5px;
-            background: white;
-            border-radius: 3px;
-            font-size: 14px;
-        }
-        
-        .comment-userinfo {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .todo-completed {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        
-        .todo-incomplete {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        
-        button {
-            padding: 8px 16px;
-            margin: 5px;
-            border: none;
-            border-radius: 4px;
-            background: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-        
-        button:hover {
-            background: #0056b3;
-        }
-        
-        input {
-            padding: 8px;
-            margin: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .error {
-            color: red;
-            margin: 10px 0;
-        }
-        
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .loading-text {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        
-        .retry-info {
-            color: orange;
-            font-style: italic;
-            margin: 5px 0;
-        }
-        
-        .load-more-btn {
-            background: #28a745;
-        }
-        
-        .load-more-btn:hover {
-            background: #218838;
-        }
-    </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Bài 3: XHR với Async/Await Pattern</h1>
-    
+
     <div class="section">
-        <h2>Chức năng 1: User Profile Card</h2>
-        <form>
-            <input class="user-id-input" type="number" min="1" max="10" step="1" placeholder="Nhập User ID (1-10)">
-            <button type="button" class="find-user">Tìm User</button>
-        </form>
-        <div class="user-result">
-            <div class="user-name"></div>
-            <div class="user-email"></div>
-            <div class="user-phone"></div>
-            <div class="user-website"></div>
-            <div class="user-company"></div>
-            <div class="user-address"></div>
-        </div>
-        <div class="find-user-error error"></div>
-        <div class="find-user-retry retry-info"></div>
-    </div>
-    
-    <div class="section">
-        <h2>Chức năng 2: Posts với Comments</h2>
-        <div class="posts-list"></div>
-        <button type="button" class="load-more-btn">Xem thêm 5 posts</button>
-        <div class="post-error error"></div>
-        <div class="post-retry retry-info"></div>
-    </div>
-    
-    <div class="section">
-        <h2>Chức năng 3: Todo List với Filter</h2>
-        <div>
-            <input class="user-id-input-todo" type="number" min="1" max="10" step="1" placeholder="Nhập User ID (1-10)">
-            <button type="button" class="all-todo-btn">Tất cả</button>
-            <button type="button" class="complete-todo-btn">Đã hoàn thành</button>
-            <button type="button" class="incomplete-todo-btn">Chưa hoàn thành</button>
-        </div>
-        <div>
-            <div class="number-todo">0</div>
-            <div class="todo-list"></div>
-        </div>
-        <div class="todo-error error"></div>
-        <div class="todo-retry retry-info"></div>
+      <h2>Chức năng 1: User Profile Card</h2>
+      <form>
+        <input
+          class="user-id-input"
+          type="number"
+          min="1"
+          max="10"
+          step="1"
+          placeholder="Nhập User ID (1-10)"
+        />
+        <button type="button" class="find-user">Tìm User</button>
+      </form>
+      <div class="user-result">
+        <div class="user-name"></div>
+        <div class="user-email"></div>
+        <div class="user-phone"></div>
+        <div class="user-website"></div>
+        <div class="user-company"></div>
+        <div class="user-address"></div>
+      </div>
+      <div class="find-user-error error"></div>
+      <div class="find-user-retry retry-info"></div>
     </div>
 
-    <div class="loading-overlay" style="display:none;">
-        <div class="loading-text">Đang tải...</div>
+    <div class="section">
+      <h2>Chức năng 2: Posts với Comments</h2>
+      <div class="posts-list"></div>
+      <button type="button" class="load-more-btn">Xem thêm 5 posts</button>
+      <div class="post-error error"></div>
+      <div class="post-retry retry-info"></div>
+    </div>
+
+    <div class="section">
+      <h2>Chức năng 3: Todo List với Filter</h2>
+      <div>
+        <input
+          class="user-id-input-todo"
+          type="number"
+          min="1"
+          max="10"
+          step="1"
+          placeholder="Nhập User ID (1-10)"
+        />
+        <button type="button" class="all-todo-btn">Tất cả</button>
+        <button type="button" class="complete-todo-btn">Đã hoàn thành</button>
+        <button type="button" class="incomplete-todo-btn">
+          Chưa hoàn thành
+        </button>
+      </div>
+      <div>
+        <div class="number-todo">0</div>
+        <div class="todo-list"></div>
+      </div>
+      <div class="todo-error error"></div>
+      <div class="todo-retry retry-info"></div>
+    </div>
+
+    <div class="loading-overlay" style="display: none">
+      <div class="loading-text">Đang tải...</div>
     </div>
     <script src="./app.js"></script>
-</body>
+  </body>
 </html>
